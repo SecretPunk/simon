@@ -1,0 +1,70 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Share Tech", sans-serif;
+}
+
+header {
+  padding: 3%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+button {
+  border-radius: 15%;
+  height: 150px;
+  width: 150px;
+}
+
+button:focus {
+  outline: none;
+}
+
+footer {
+  text-align: center;
+}
+
+.game {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 35px;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* provided */
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+/* provided */
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
+
+#green {
+  background-color: green;
+}
+
+#red {
+  background-color: red;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#blue {
+  background-color: blue;
+}
