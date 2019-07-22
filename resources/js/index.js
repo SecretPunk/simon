@@ -9,12 +9,16 @@ wrongSound.src = soundPath + "wrong.mp3";
 
 var level = 0;
 
-$(document).keypress(function() {
-  if (level == 0) {
-    nextSequence();
+$(document).keydown(function(e) {
+  if (level === 0) {
+    setTimeout(function() {
+      nextSequence();
+    }, 200); // so it doesn't start too instantly
   }
 });
 
+// if the player gets the sequence right, the user pattern is cleared, and
+// a new colour is added to the game pattern
 function nextSequence() {
   userClickedPattern = [];
   level++;
@@ -28,11 +32,14 @@ function nextSequence() {
 }
 
 $("button").click(function() {
-  var userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
-  playColourSound(userChosenColour);
-  animatePress(userChosenColour);
-  checkAnswer();
+  if (level > 0) { // ignore button clicks if the game hasn't started
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
+    playColourSound(userChosenColour);
+    animatePress(userChosenColour);
+    checkAnswer();
+    this.blur();
+  }
 });
 
 function playColourSound(colour) {
@@ -47,6 +54,9 @@ function animatePress(colour) {
   }, 100);
 }
 
+// the user pattern is only checked when the user has entered a full response
+// i.e. if the game pattern consists of five colours, then the answer is not
+// checked until the user has clicked a sequence of five buttons
 function checkAnswer() {
   if (userClickedPattern.length === gamePattern.length) {
     if (compareArrays(userClickedPattern, gamePattern)) {
@@ -60,7 +70,8 @@ function checkAnswer() {
       setTimeout(function() {
         $("body").removeClass("game-over");
       }, 200);
-      $("h2").text("GAME OVER. Refresh the page.");
+      $("h2").text("GAME OVER. Press any key to restart.");
+      startOver();
     }
   }
   else {
@@ -81,4 +92,9 @@ function compareArrays(array1, array2) {
   }
 
   return same;
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
 }

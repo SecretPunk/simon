@@ -5,7 +5,7 @@ body {
 }
 
 header {
-  padding: 3%;
+  padding: 2%;
   text-align: center;
 }
 
@@ -30,6 +30,7 @@ button:focus {
 }
 
 footer {
+  padding: 2%;
   text-align: center;
 }
 
@@ -38,16 +39,16 @@ footer {
   grid-template-columns: auto auto;
   grid-gap: 35px;
   justify-content: center;
-  padding: 30px;
+  padding: 20px;
 }
 
-/* provided */
+/* provided by app brewery */
 .game-over {
   background-color: red;
   opacity: 0.8;
 }
 
-/* provided */
+/* provided by app brewery */
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
