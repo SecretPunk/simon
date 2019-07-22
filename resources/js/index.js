@@ -10,12 +10,13 @@ wrongSound.src = soundPath + "wrong.mp3";
 var level = 0;
 
 $(document).keypress(function() {
-  if (level === 0) {
+  if (level == 0) {
     nextSequence();
   }
 });
 
 function nextSequence() {
+  userClickedPattern = [];
   level++;
   $("h2").text("Level " + level);
   var randomNumber = Math.floor(Math.random()*4); // generates 0 to 3 inclusive
@@ -49,7 +50,6 @@ function animatePress(colour) {
 function checkAnswer() {
   if (userClickedPattern.length === gamePattern.length) {
     if (compareArrays(userClickedPattern, gamePattern)) {
-      userClickedPattern = [];
       setTimeout(function() {
         nextSequence();
       }, 700);
@@ -60,8 +60,7 @@ function checkAnswer() {
       setTimeout(function() {
         $("body").removeClass("game-over");
       }, 200);
-      $("h2").text("GAME OVER. Press any key to start again.");
-      startOver();
+      $("h2").text("GAME OVER. Refresh the page.");
     }
   }
   else {
@@ -82,10 +81,4 @@ function compareArrays(array1, array2) {
   }
 
   return same;
-}
-
-function startOver() {
-  level = 0;
-  gamePattern = [];
-  userClickedPattern = [];
 }
