@@ -55,7 +55,13 @@ function checkAnswer() {
       }, 700);
     }
     else {
-      console.log("wrong");
+      wrongSound.play();
+      $("body").addClass("game-over");
+      setTimeout(function() {
+        $("body").removeClass("game-over");
+      }, 200);
+      $("h2").text("GAME OVER. Press any key to start again.");
+      startOver();
     }
   }
   else {
@@ -76,4 +82,10 @@ function compareArrays(array1, array2) {
   }
 
   return same;
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  userClickedPattern = [];
 }
